@@ -8,7 +8,6 @@ import "github.com/gin-gonic/gin"
 // @Tags         首页
 // @Accept       json
 // @Produce      json
-// @Param        id   path      int  true  "Account ID"
 // @Success      200  {string} 	welcome
 // @Failure      400  {string} 	welcome
 // @Failure      404  {string} 	welcome
