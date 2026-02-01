@@ -1,7 +1,9 @@
 package models
 
 import (
+	"ginchat/utils"
 	"gorm.io/gorm"
+	"time"
 )
 
 type UserBasic struct {
@@ -13,13 +15,19 @@ type UserBasic struct {
 	Identity      string
 	ClientIp      string
 	ClientPort    string
-	LoginTime     uint64
-	HeartBeatTime uint64
-	LogOutTime    uint64
+	LoginTime     *time.Time `gorm:"column:login_time"`
+	HeartBeatTime *time.Time `gorm:"column:heart_beat_time"`
+	LoginOutTime  *time.Time `gorm:"column:login_out_time"`
 	IsLogout      bool
 	DeviceInfo    string
 }
 
 func (table *UserBasic) TableName() string {
 	return "user_basic"
+}
+
+func GetUserList() []*UserBasic {
+	data := make([]*UserBasic, 10)
+	utils.DB.Find(&data)
+	return data
 }

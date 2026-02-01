@@ -1,8 +1,17 @@
 package main
 
-import "ginchat/router"
+import (
+	"ginchat/router"
+	"ginchat/utils"
+)
 
 func main() {
+	utils.InitConfig()
+	utils.InitMySQL()
+
 	r := router.Router()
-	r.Run(":8081")
+	err := r.Run(":8081")
+	if err != nil {
+		return
+	}
 }
